@@ -12,15 +12,14 @@ A busy pet owner needs help staying consistent with pet care. They want an assis
 
 Your job is to design the system first (UML), then implement the logic in Python, then connect it to the Streamlit UI.
 
-## What you will build
+## Smarter Scheduling
 
-Your final app should:
+The PawPal+ scheduler now includes advanced features for better task management:
 
-- Let a user enter basic owner + pet info
-- Let a user add/edit tasks (duration + priority at minimum)
-- Generate a daily schedule/plan based on constraints and priorities
-- Display the plan clearly (and ideally explain the reasoning)
-- Include tests for the most important scheduling behaviors
+- **Time-based Sorting**: Tasks can be sorted by their scheduled time for chronological planning.
+- **Filtering Options**: Filter tasks by completion status (pending/completed) or by specific pet.
+- **Conflict Detection**: Automatically detects and warns about tasks scheduled at the same time, whether for the same pet or different pets.
+- **Recurring Tasks**: Daily and weekly tasks automatically generate new instances when marked complete, ensuring consistent care routines.
 
 ## Getting started
 

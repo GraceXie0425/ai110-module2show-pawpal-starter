@@ -16,16 +16,10 @@ The initial UML design centers on five classes with clearly separated responsibi
 
 **b. Design changes**
 
-Yes, the design changed in four ways after reviewing the initial stubs:
-
-1. **Removed `Scheduler.tasks`** — The original design stored a separate `tasks` list on `Scheduler` in addition to `Scheduler.pet`. This created two sources of truth: if a task was added to the pet after the scheduler was constructed, the scheduler's copy would go stale silently. The fix was to remove `Scheduler.tasks` entirely and always source tasks from `self.pet.get_all_tasks()` at plan-generation time.
-
-2. **Added required constructor parameters** — All `__init__` methods originally took no arguments, leaving every object in an invalid state after construction (e.g., `Task` with `duration_minutes=0`, `priority=0`). Required fields are now enforced in `__init__` so an object cannot exist without its essential data.
-
-3. **Added `Owner.pets` list** — The UML showed a one-to-many relationship from `Owner` to `Pet`, but `Owner` had no attribute to hold pets. A `pets: List[Pet]` list was added, and `Pet.__init__` registers itself on the owner automatically, keeping the relationship consistent in both directions.
-
-4. **Added `pet` reference to `DailyPlan`** — `DailyPlan` originally had no link back to the pet it was generated for, making it impossible to know context when calling `explain()`. A `pet` parameter was added to `DailyPlan.__init__` so the plan always knows which pet it belongs to.
-
+- Did your design change during implementation?
+Yes 
+- If yes, describe at least one change and why you made it.
+Removed `Scheduler.tasks`, added required constructor parameters
 ---
 
 ## 2. Scheduling Logic and Tradeoffs
@@ -38,7 +32,10 @@ Yes, the design changed in four ways after reviewing the initial stubs:
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
+The scheduler only checks for exact time matches when detecting conflicts, rather than considering overlapping task durations or time ranges.
+
 - Why is that tradeoff reasonable for this scenario?
+This tradeoff keeps the conflict detection lightweight and simple, avoiding the complexity of time range calculations. In a pet care context, tasks are often short and flexible, so exact time conflicts serve as useful warnings without overcomplicating the scheduling logic for edge cases like partial overlaps.
 
 ---
 
