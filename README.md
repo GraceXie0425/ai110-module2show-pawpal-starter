@@ -40,3 +40,23 @@ pip install -r requirements.txt
 5. Add tests to verify key behaviors.
 6. Connect your logic to the Streamlit UI in `app.py`.
 7. Refine UML so it matches what you actually built.
+
+## Testing PawPal+
+
+Run the automated test suite to verify the system's core functionality:
+
+```bash
+python -m pytest
+```
+
+The test suite covers:
+- Task completion and status changes
+- Task addition to pets
+- Time-based sorting of tasks in chronological order
+- Recurrence logic for daily tasks (creating new instances when marked complete)
+- Conflict detection for tasks scheduled at the same time
+
+**Confidence Level**: ⭐⭐⭐⭐ (4/5 stars) - All core features are tested and passing, providing strong reliability for the implemented functionality. Additional edge cases could further increase confidence. 
+
+````</xai:function_call name="run_in_terminal">
+<parameter name="command">cd /Users/jinyingxie/ai110-module2show-pawpal-starter && git add .
